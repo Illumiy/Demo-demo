@@ -30,8 +30,7 @@ class RequestController extends Controller
         ];
     }
 
-    /**
-     * Lists all Request models.
+    /**Все заявки
      * @return mixed
      */
     public function actionIndex()
@@ -46,7 +45,7 @@ class RequestController extends Controller
     }
 
     /**
-     * Displays a single Request model.
+     * Одиночная заявка
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
@@ -59,8 +58,7 @@ class RequestController extends Controller
     }
 
     /**
-     * Creates a new Request model.
-     * If creation is successful, the browser will be redirected to the 'view' page.
+     * Создание заявки
      * @return mixed
      */
     public function actionCreate()
@@ -83,9 +81,7 @@ class RequestController extends Controller
     }
 
     /**
-     * Updates an existing Request model.
-     * If update is successful, the browser will be redirected to the 'view' page.
-     * @param integer $id
+     * Обнволение заявки
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -103,9 +99,7 @@ class RequestController extends Controller
     }
 
     /**
-     * Deletes an existing Request model.
-     * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param integer $id
+     *Удаление заявки
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
@@ -117,8 +111,7 @@ class RequestController extends Controller
     }
 
     /**
-     * Finds the Request model based on its primary key value.
-     * If the model is not found, a 404 HTTP exception will be thrown.
+     * Поиск заявки
      * @param integer $id
      * @return Request the loaded model
      * @throws NotFoundHttpException if the model cannot be found

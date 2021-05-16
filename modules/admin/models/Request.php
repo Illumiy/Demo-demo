@@ -33,7 +33,7 @@ class Request extends \yii\db\ActiveRecord
     {
         return 'request';
     }
-
+    //Добавление "Новая" в строку статуса
     public function __construct(array $config =[])
     {
         parent::__construct($config);
@@ -60,6 +60,7 @@ class Request extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+
     public function rules()
     {
         return [
@@ -68,8 +69,8 @@ class Request extends \yii\db\ActiveRecord
             [['created_at'], 'safe'],
             [['created_by', 'category_id', 'updated_by'], 'integer'],
             [['status', 'name', 'before_img', 'after_img'], 'string', 'max' => 256],
-            [['imageFile1'], 'file', 'skipOnEmpty'=> false, 'extensions'=> 'png, jpg, tmp, bmp', 'maxSize'=> 10* 1024* 1024],
-            [['imageFile2'], 'file', 'skipOnEmpty'=> true, 'extensions'=> 'png, jpg, tmp, bmp', 'maxSize'=> 10* 1024* 1024],
+            [['imageFile1'], 'file', 'skipOnEmpty'=> false, 'extensions'=> 'png, jpg, tmp, bmp', 'maxSize'=> 10* 1024* 1024],//Правила для расширения и размера файла
+            [['imageFile2'], 'file', 'skipOnEmpty'=> true, 'extensions'=> 'png, jpg, tmp, bmp', 'maxSize'=> 10* 1024* 1024],//Правила для расширения и размера файла
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute'=> ['category_id'=>'id']],
         ];
     }
@@ -77,17 +78,18 @@ class Request extends \yii\db\ActiveRecord
     {
         return $this->hasOne(Category::className(),['id'=>'category_id']);
     }
+    //Загрузка файлов
     public function upload()
     {
         if ($this->validate()) {
             if ($this->imageFile1){
-                $path = 'uploads/' . $this->imageFile1->baseName . '.' . $this->imageFile1->extension;
-                $this->imageFile1->saveAs($path);
+                $path = 'uploads/' . $this->imageFile1->baseName . '.' . $this->imageFile1->extension;//Сохранение пути
+                $this->imageFile1->saveAs($path);//Сохранение файла
                 $this->before_img= $path;
             }
             if ($this->imageFile2){
-                $path = 'uploads/' . $this->imageFile2->baseName . '.' . $this->imageFile2->extension;
-                $this->imageFile2->saveAs($path);
+                $path = 'uploads/' . $this->imageFile2->baseName . '.' . $this->imageFile2->extension;//Сохранение пути
+                $this->imageFile2->saveAs($path);//Сохранение файла
                 $this->before_img= $path;
             }
            
