@@ -34,11 +34,7 @@ class Request extends \yii\db\ActiveRecord
         return 'request';
     }
     //Добавление "Новая" в строку статуса
-    public function __construct(array $config =[])
-    {
-        parent::__construct($config);
-        $this->status = "Новая";
-    }
+
     public function behaviors()
     {
         return [

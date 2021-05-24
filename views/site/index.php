@@ -17,7 +17,7 @@ $this->registerJs($script);
 <div class="site-index">
     <? if(!Yii::$app->user->isGuest) : ?>
     <p>
-        <?= Html::a('Создать заявку', ['/front/create'], ['class' => 'btn btn-success']) ?>
+        <?= Html::a('Создать заявку', ['/admin/request/create'], ['class' => 'btn btn-success']) ?>
     </p>
     <? endif; ?>
  
@@ -46,6 +46,7 @@ $this->registerJs($script);
                 'format'=> 'html'
             ],
             'after_img',
+            
             [
                 'attribute'=> 'after_img',
                 'value'=> function($model){
@@ -53,6 +54,8 @@ $this->registerJs($script);
                 },
                 'format'=> 'html'
             ],
+            'created_at',
+            'why_not:ntext',
         ]
     ]);?>
 

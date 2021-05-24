@@ -46,8 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format'=> 'html'
             ],
             //'why_not:ntext',
-            //'created_at',
-            //'created_by',
+            'created_at',
+            'created_by',
             //'category_id',
             //'updated_by',
 
