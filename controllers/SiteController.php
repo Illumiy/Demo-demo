@@ -11,6 +11,7 @@ use app\models\LoginForm;
 use app\models\ContactForm;
 use yii\data\ActiveDataProvider;
 use app\modules\admin\models\Request;
+use app\modules\admin\models\RequestSearch;
 
 class SiteController extends Controller
 {
@@ -63,8 +64,17 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $request = Request::find()->where(['status' => 'Решена'])->limit(4)->orderBy('created_at DESC')->all();
-        return $this->render('index', ['request'=> $request]);
+        // $request = Request::find()->where(['status' => 'Решена'])->limit(4)->orderBy('created_at DESC')->all();
+        $searchModel = new RequestSearch();
+        $dataProvider = $searchModel->search(\Yii::$app->request->queryParams);
+        $count = Request::find()->where(['status' => 'Решена'])->count();
+        $dataProvider->query->andWhere(['created_by'=> \Yii::$app->user->id])->orderBy('created_at DESC '); // Выбор всех записей текущего рпользователя и сортировка
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+            'count' => $count,
+        ]);
+        // return $this->render('index', ['request'=> $request]);
     }
 
     /**

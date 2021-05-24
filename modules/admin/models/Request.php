@@ -72,11 +72,26 @@ class Request extends \yii\db\ActiveRecord
             [['imageFile1'], 'file', 'skipOnEmpty'=> false, 'extensions'=> 'png, jpg, tmp, bmp', 'maxSize'=> 10* 1024* 1024],//Правила для расширения и размера файла
             [['imageFile2'], 'file', 'skipOnEmpty'=> true, 'extensions'=> 'png, jpg, tmp, bmp', 'maxSize'=> 10* 1024* 1024],//Правила для расширения и размера файла
             [['category_id'], 'exist', 'skipOnError' => true, 'targetClass' => Category::className(), 'targetAttribute'=> ['category_id'=>'id']],
+            ['imageFile2', 'required', 'when' => function($model, $attribute) {
+                return $model->status == 'Решена';
+         
+           }, 'enableClientValidation' => false],
         ];
     }
     public function getCategory()
     {
         return $this->hasOne(Category::className(),['id'=>'category_id']);
+    }
+    public static function ListStatus(){
+        $arr = [
+            'Новая' => 'Новая',
+            'Решена' => 'Решена',
+        ];
+        $arr2 = ['Отклонена' => 'Отклонена',];
+        if (Yii::$app->user->identity->username=='admin'){
+            return array_merge($arr,$arr2);
+        }
+        return $arr;
     }
     //Загрузка файлов
     public function upload()
