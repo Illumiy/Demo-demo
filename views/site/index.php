@@ -37,23 +37,23 @@ $this->registerJs($script);
             // 'id',
             'status',
             'name',
-            'before_img',
-            [
-                'attribute'=> 'before_img',
-                'value'=> function($model){
-                    return Html::img($model->before_img,['width'=> 100]);
-                },
-                'format'=> 'html'
-            ],
-            'after_img',
+            // 'before_img',
+            // [
+            //     'attribute'=> 'before_img',
+            //     'value'=> function($model){
+            //         return Html::img($model->before_img,['width'=> 100]);
+            //     },
+            //     'format'=> 'html'
+            // ],
+            // 'after_img',
             
-            [
-                'attribute'=> 'after_img',
-                'value'=> function($model){
-                    return Html::img($model->after_img,['width'=> 100]);
-                },
-                'format'=> 'html'
-            ],
+            // [
+            //     'attribute'=> 'after_img',
+            //     'value'=> function($model){
+            //         return Html::img($model->after_img,['width'=> 100]);
+            //     },
+            //     'format'=> 'html'
+            // ],
             'created_at',
             'why_not:ntext',
         ]
